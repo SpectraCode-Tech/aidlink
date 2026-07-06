@@ -87,7 +87,7 @@ export default function VerificationQueuePage() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 sm:flex-none text-center px-3 sm:px-5 py-3.5 text-xs sm:text-sm font-bold capitalize transition-all border-b-2 relative -mb-[2px] whitespace-nowrap ${
+              className={`flex-1 sm:flex-none text-center px-3 sm:px-5 py-3.5 text-xs sm:text-sm font-bold capitalize transition-all border-b-2 relative -mb-0.5 whitespace-nowrap ${
                 activeTab === tab
                   ? "border-primary text-primary dark:text-white dark:border-white"
                   : "border-transparent text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white"
@@ -182,7 +182,7 @@ export default function VerificationQueuePage() {
                 <span className="font-semibold text-slate-400 dark:text-zinc-500">
                   Title
                 </span>
-                <span className="sm:col-span-2 font-bold text-slate-800 dark:text-zinc-200 break-words">
+                <span className="sm:col-span-2 font-bold text-slate-800 dark:text-zinc-200 wrap-break-word">
                   {selectedItem.title}
                 </span>
               </div>
@@ -190,7 +190,7 @@ export default function VerificationQueuePage() {
                 <span className="font-semibold text-slate-400 dark:text-zinc-500">
                   Submitted By
                 </span>
-                <span className="sm:col-span-2 font-bold text-slate-800 dark:text-zinc-200 break-words">
+                <span className="sm:col-span-2 font-bold text-slate-800 dark:text-zinc-200 wrap-break-word">
                   {selectedItem.user}
                 </span>
               </div>
@@ -198,7 +198,7 @@ export default function VerificationQueuePage() {
                 <span className="font-semibold text-slate-400 dark:text-zinc-500">
                   Details
                 </span>
-                <span className="sm:col-span-2 font-medium text-slate-600 dark:text-zinc-300 leading-relaxed break-words">
+                <span className="sm:col-span-2 font-medium text-slate-600 dark:text-zinc-300 leading-relaxed wrap-break-word">
                   {selectedItem.details}
                 </span>
               </div>
