@@ -1,30 +1,33 @@
 import React from 'react';
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  error?: string;
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className = '', label, id, ...props }, ref) => {
-    // Generate an ID if one isn't provided so the label can click-focus the input
-    const inputId = id || props.name;
-
-    return (
-      <div className="flex w-full flex-col gap-1.5">
-        {label && (
-          <label htmlFor={inputId} className="text-sm font-medium text-text-heading">
-            {label}
-          </label>
-        )}
-        <input
-          id={inputId}
-          ref={ref}
-          className={`w-full rounded-lg bg-white/40  backdrop-blur-md px-5 py-4 text-white outline-none transition-all focus:bg-white/40 focus:ring-2 focus:ring-white/50 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+export default function Input({ label, error, className = '', ...props }: InputProps) {
+  return (
+    <div className="w-full flex flex-col gap-2">
+      {label && (
+        <label className="text-xs font-bold uppercase tracking-wider text-text-heading/80 px-1">
+          {label}
+        </label>
+      )}
+      
+      <div className="relative w-full">
+        <input 
+          className={`w-full rounded-xl bg-white/40 dark:bg-black/10 backdrop-blur-md border border-white/60 dark:border-white/10 px-5 py-3.5 text-text-heading dark:text-white placeholder:text-text-muted/60 outline-none transition-all duration-200 focus:border-primary-500/80 focus:ring-2 focus:ring-primary-500/10 shadow-sm ${
+            error ? 'border-danger-500 focus:border-danger-500 focus:ring-danger-500/10' : ''
+          } ${className}`}
           {...props}
         />
       </div>
-    );
-  }
-);
 
-Input.displayName = 'Input';
+      {error && (
+        <span className="text-xs font-semibold text-danger-600 px-1 animate-fadeIn">
+          {error}
+        </span>
+      )}
+    </div>
+  );
+}

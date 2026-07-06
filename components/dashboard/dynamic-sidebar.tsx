@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { usePathname } from 'next/navigation';
-import { Sidebar } from '@/components/dashboard/sidebar'; // Your Beneficiary Sidebar
+import Sidebar from '@/components/dashboard/sidebar'; // Your Beneficiary Sidebar
 import { AdminSidebar } from '../admin/admin-sidebar';
 export function DynamicSidebar() {
   const pathname = usePathname();
