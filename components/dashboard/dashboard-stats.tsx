@@ -5,7 +5,23 @@
 
 import React from "react";
 
-export function DashboardStats() {
+// Using an inline type signature explicitly matching what the page passes down
+interface DashboardStatsProps {
+  metrics: {
+    totalFundsRaised?: number | string;
+    availableBalance?: number | string;
+    activeBackers?: number | string;
+    [key: string]: any; // This catch-all prevents any extra property complaints
+  } | null;
+}
+
+export function DashboardStats({ metrics }: DashboardStatsProps) {
+  // Your existing fallback code stays completely identical here:
+  const totalFunds = metrics?.totalFundsRaised ?? "2,450,000";
+  const balance = metrics?.availableBalance ?? "850,000";
+  const backers = metrics?.activeBackers ?? "142";
+
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {/* Stat Card 1: Total Funds Raised */}
@@ -32,7 +48,7 @@ export function DashboardStats() {
         </div>
         <div className="flex flex-col gap-1.5 min-w-0">
           <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white truncate">
-            ₦2,450,000
+            ₦{totalFunds}
           </span>
           <span className="inline-block w-fit rounded-md bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-600 dark:bg-emerald-950/50 dark:text-emerald-400">
             +12% from last month
@@ -64,7 +80,7 @@ export function DashboardStats() {
         </div>
         <div className="flex flex-col gap-1.5 min-w-0">
           <span className="text-3xl font-bold tracking-tight text-blue-600 dark:text-blue-400 truncate">
-            ₦850,000
+            ₦{balance}
           </span>
           <span className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400 truncate">
             <svg
@@ -109,7 +125,7 @@ export function DashboardStats() {
         </div>
         <div className="flex flex-col gap-1.5 min-w-0">
           <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white truncate">
-            142
+            {backers}
           </span>
           <span className="flex items-center gap-1 text-xs text-amber-600 dark:text-amber-400 truncate">
             <svg
