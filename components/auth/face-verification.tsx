@@ -78,7 +78,6 @@ export function FaceVerification({
               <svg
                 className="h-8 w-8 text-emerald-600 dark:text-emerald-400"
                 fill="none"
-                view="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={3}
